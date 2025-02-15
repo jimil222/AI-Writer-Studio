@@ -20,18 +20,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [isSignedIn, pathname, router]);
 
   return (
-    <div className="bg-slate-100 h-full">
+    <div className="bg-slate-100 min-h-screen flex">
+      {/* Sidebar */}
       <div className="md:w-64 hidden md:block fixed">
         <SideNav />
       </div>
-      <div className="md:ml-64">
+
+      {/* Main content area */}
+      <div className="flex flex-col md:ml-64 w-full min-h-screen">
         <div className="hidden md:block">
           <Header />
         </div>
-        {children}
-        <div>
-            <Footer/>
-        </div>
+        <main className="flex-grow">{children}</main>
+
+        {/* Footer always at bottom */}
+        <Footer />
       </div>
     </div>
   );
