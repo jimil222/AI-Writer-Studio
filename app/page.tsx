@@ -14,17 +14,17 @@ export default function Home() {
 
   const handleGetStarted = async () => {
     if (isSignedIn) {
-      router.push("/dashboard");
+      window.location.href = "/dashboard"
     } else {
-      router.push("/sign-in");
+      window.location.href="/sign-in";
     }
   };
 
   const containerClass = "container mx-auto px-4 sm:px-6 lg:px-8"
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
-      <header className="container mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
+<div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-gray-900 dark:from-blue-900 dark:via-blue-800 dark:to-blue-700 dark:text-white transition-colors duration-300">
+        <header className="container mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
         <div className="flex items-center space-x-2 mb-4 sm:mb-0">
           <BotMessageSquare className="w-8 h-8 text-blue-600 dark:text-blue-400" />
           <span className="text-xl font-bold">AI Writer Studio</span>
@@ -60,7 +60,7 @@ export default function Home() {
               Write smarter and better with AI
             </p>
             <button
-              onClick={() => window.location.href = "/dashboard"}
+              onClick={handleGetStarted}
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center transition-colors"
             >
               Get Started <ArrowRight className="ml-2" />
@@ -86,7 +86,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="how-it-works" className="py-20">
+        <section id="how-it-works" className="py-20 bg-white">
           <div className={containerClass}>
             <h2 className="text-3xl font-bold mb-12 text-center">How It Works</h2>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-8 sm:space-y-0 sm:space-x-4 md:space-x-12">
@@ -107,7 +107,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="pricing" className="py-20">
+        <section id="pricing" className="py-20 bg-white">
           <div className={containerClass}>
             <h2 className="text-3xl font-bold mb-12 text-center">Simple Pricing</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -128,7 +128,7 @@ export default function Home() {
                   features: ["Custom AI model", "Dedicated account manager", "API access", "Advanced analytics"],
                 },
               ].map((plan, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md text-center">
+                <div key={index} className="bg-slate-100 dark:bg-gray-800 p-8 rounded-lg shadow-md text-center">
                   <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
                   <p className="text-4xl font-bold mb-6 text-blue-600 dark:text-blue-400">{plan.price}</p>
                   <ul className="mb-8">
@@ -154,7 +154,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   )
