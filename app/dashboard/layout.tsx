@@ -28,9 +28,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Main content area */}
       <div className="flex flex-col md:ml-64 w-full min-h-screen">
-        <div className="hidden md:block">
           <Header />
-        </div>
         <main className="flex-grow">{children}</main>
 
         {/* Footer always at bottom */}

@@ -25,6 +25,7 @@ function CreateNewContent() {
   const [loading, setloading] = useState(false)
   const [aiOutput, setaiOutput] = useState<string>('');
   const {user} = useUser();
+  
   const generateAiContent = async (formData:any)=>{
     setloading(true)
     const selectedPrompt = selectedTemplate?.aiPrompt;
