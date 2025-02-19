@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import TrackUsage from './TrackUsage'
 
 function SideNav() {
     const [isOpen, setIsOpen] = useState(true); // Toggle state for sidebar
@@ -22,7 +23,7 @@ function SideNav() {
     }, [])
 
     return (
-        <div className={`h-screen p-5 shadow-sm border bg-white transition-all duration-300
+        <div className={`h-screen relative p-5 shadow-sm border bg-white transition-all duration-300
             ${isOpen ? 'min-w-[250px]' : 'w-[70px]'} flex flex-col`}
         >
             {/* Toggle Button for Mobile */}
@@ -55,7 +56,10 @@ function SideNav() {
                     </Link>
                 ))}
             </div>
-        </div>
+            <div className='absolute bottom-10 left-0 w-full'>
+                <TrackUsage/>
+            </div>
+        </div> 
     );
 }
 

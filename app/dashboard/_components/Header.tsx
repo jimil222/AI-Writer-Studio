@@ -51,7 +51,7 @@ function Header() {
               </MenubarItem>
                 <MenubarSeparator/>
             </Link>
-            <Link href='/dashboard/settings'>
+            <Link href='/dashboard/setting'>
               <MenubarItem className="flex items-center gap-3">
                 <Settings className="w-5 h-5" />
                 Settings

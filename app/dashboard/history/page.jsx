@@ -18,7 +18,8 @@ import { Clipboard, Copy, CopyCheck, Handshake } from 'lucide-react'
 
 function page() {
     const [data, setData] = useState([]);
-    const [copied, setcopied] = useState(null)
+    const [copied, setcopied] = useState(null);
+    const [loading, setLoading] = useState(true);
     const { user } = useUser();
     const email = user?.primaryEmailAddress?.emailAddress;
 
@@ -35,6 +36,8 @@ function page() {
         } catch (error) {
             console.error("Error fetching records:", error);
             setData([]);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -76,9 +79,32 @@ function page() {
                             <TableHead className="py-3 ">Copy</TableHead>
                         </TableRow>
                     </TableHeader>
+
                     {/* Table Body */}
                     <TableBody className="text-gray-700 text-sm font-medium">
-                        { data.length > 0 ? (
+                        {loading ? (
+                            <>
+                                {[1, 2, 3, 4, 5].map((item, index) => (
+                                    <TableRow key={index} className="border-b border-gray-200 animate-pulse">
+                                        <TableCell className="py-3 px-4">
+                                            <div className="h-4 w-24 bg-slate-300 rounded"></div>
+                                        </TableCell>
+                                        <TableCell className="py-3 px-4">
+                                            <div className="h-4 w-1/2 bg-slate-300 rounded"></div>
+                                        </TableCell>
+                                        <TableCell className="py-3 px-4">
+                                            <div className="h-4 w-20 bg-slate-300 rounded"></div>
+                                        </TableCell>
+                                        <TableCell className="py-3 px-4">
+                                            <div className="h-4 w-16 bg-slate-300 rounded"></div>
+                                        </TableCell>
+                                        <TableCell className="py-3 px-4">
+                                            <div className="h-4 w-8 bg-slate-300 rounded"></div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </>
+                        ) : data.length > 0 ? (
                             data.map((item, index) => {
                                 let getname = Templates.find(t => t.slug === item.templateSlug);
 
@@ -94,8 +120,9 @@ function page() {
                                             {item.createdAt}
                                         </TableCell>
                                         <TableCell className="max-w-[300px] py-3 px-4 font-medium text-nowrap">
-                                            {item.aiResponse.length}
+                                            {item.aiResponse.replace(/\s/g, "").length}
                                         </TableCell>
+
                                         <TableCell>
                                             {copied === item.id ? (
                                                 <CopyCheck className="text-black w-4 h-4" />
@@ -119,14 +146,11 @@ function page() {
                                     </div>
                                 </TableCell>
                             </TableRow>
-
                         )}
                     </TableBody>
-
                 </Table>
             </div>
         </div>
-
     )
 }
 
