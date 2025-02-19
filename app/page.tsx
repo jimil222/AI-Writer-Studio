@@ -16,15 +16,15 @@ export default function Home() {
     if (isSignedIn) {
       window.location.href = "/dashboard"
     } else {
-      window.location.href="/sign-in";
+      window.location.href = "/sign-in";
     }
   };
 
   const containerClass = "container mx-auto px-4 sm:px-6 lg:px-8"
 
   return (
-<div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-gray-900 dark:from-blue-900 dark:via-blue-800 dark:to-blue-700 dark:text-white transition-colors duration-300">
-        <header className="container mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-gray-900 dark:from-blue-900 dark:via-blue-800 dark:to-blue-700 dark:text-white transition-colors duration-300">
+      <header className="container mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
         <div className="flex items-center space-x-2 mb-4 sm:mb-0">
           <BotMessageSquare className="w-8 h-8 text-blue-600 dark:text-blue-400" />
           <span className="text-xl font-bold">AI Writer Studio</span>
@@ -94,7 +94,7 @@ export default function Home() {
                 { step: "1", text: "Choose your content type" },
                 { step: "2", text: "Provide some basic information" },
                 { step: "3", text: "Let AI generate your content" },
-                { step: "4", text: "Edit and publish" },
+                { step: "4", text: "Copy and use" },
               ].map((item, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center text-2xl font-bold mb-4 text-white">
@@ -110,48 +110,40 @@ export default function Home() {
         <section id="pricing" className="py-20 bg-white">
           <div className={containerClass}>
             <h2 className="text-3xl font-bold mb-12 text-center">Simple Pricing</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col md:flex-row flex-wrap justify-center gap-16">
               {[
                 {
-                  name: "Basic",
-                  price: "$19",
-                  features: ["100 AI generations/month", "Basic templates", "Email support"],
+                  name: "Free",
+                  price: "$0",
+                  features: ["10,000 words", "Access to all templates", "Unlimited Download and copy","1 month history  "],
                 },
                 {
                   name: "Pro",
-                  price: "$49",
-                  features: ["Unlimited AI generations", "Advanced templates", "Priority support", "SEO tools"],
-                },
-                {
-                  name: "Enterprise",
-                  price: "Custom",
-                  features: ["Custom AI model", "Dedicated account manager", "API access", "Advanced analytics"],
+                  price: "$2.99",
+                  features: ["1,00,000 words", "Access to all templates", "Unlimited Download and copy","1 Year of history"],
                 },
               ].map((plan, index) => (
-                <div key={index} className="bg-slate-100 dark:bg-gray-800 p-8 rounded-lg shadow-md text-center">
+                <div
+                  key={index}
+                  className="bg-slate-100 dark:bg-gray-800 p-8 rounded-lg shadow-md text-center w-full sm:max-w-xs md:max-w-xs cursor-pointer"
+                >
                   <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
                   <p className="text-4xl font-bold mb-6 text-blue-600 dark:text-blue-400">{plan.price}</p>
-                  <ul className="mb-8">
+                  <ul className="mb-8 text-left">
                     {plan.features.map((feature, featureIndex) => (
-                      <li
-                        key={featureIndex}
-                        className="flex items-center justify-center mb-2 text-gray-700 dark:text-gray-300"
-                      >
+                      <li key={featureIndex} className="flex items-center mb-2 text-gray-700 dark:text-gray-300">
                         <CheckCircle className="w-5 h-5 mr-2 text-green-500" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    href="#"
-                    className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full inline-block transition-colors"
-                  >
-                    Choose Plan
-                  </Link>
                 </div>
               ))}
             </div>
           </div>
+
+              
+
         </section>
       </main>
       <Footer />
